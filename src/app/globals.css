@@ -2,11 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
   html,
   body {
   }
 }
 
+/* Custom styles */
+.main-header {
+  position: fixed !important;
+  background-color: #fff;
+  z-index: 101;
+}
+.site-logo { margin-left: 100px; }
+/* Show more button */
+.link-style-button {
+  border: none;
+  background: transparent;
+  color: #1d242d; /* Tailwind's blue-600 */
+  cursor: pointer;
+}
+
+.link-style-button:hover {
+  color: #1d242d; /* Tailwind's blue-800 */
+  text-decoration: underline;
+}
+
+.link-style-blue {
+  border: none;
+  background: transparent;
+  color: #1d242d; /* Tailwind's blue-600 */
+  cursor: pointer;
+}
+.link-style-blue:hover {
+  color: #1d242d; /* Tailwind's blue-800 */
+  border-bottom: 5px solid #163BFB !important;
+}
+
+/* components/GridDisplay */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-rows: repeat(9, auto); /* 9 rows, adjust height as needed */
+  gap: 10px; /* space between items */
+  padding: 10px;
+}
+
+.gridItem {
+  border: 1px solid #ddd;
+  padding: 20px;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.filter-header {
+  font-size: 16px;
+  font-weight: normal;
+  display: flex;
+  flex-direction: row;
+}
+
+.flter-value-input {
+  width: 100% !important;
+  align-items: stretch !important;
+}
+
+.filter-by-rate {
+  font-weight: bold;
+  border: none;
+  border-width: 0px;
+  background: transparent;
+  color: #1d242d;
+  cursor: pointer;
+}
+
+.amount-currency-input {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.amount-currency {
+  width: 20%;
+  background: #fff;
+  border: 1px solid #dedede;
+  border-left: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 0px 10px 10px 0px;
+  margin: 0px 0px 0px -8px !important;
+  padding: 8px 9px 8px 9px !important;
+}
