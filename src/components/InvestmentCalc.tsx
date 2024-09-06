@@ -1,14 +1,14 @@
-// utils/investmentCalculations.js
+import { INTEREST_RATE } from "@/components/DefineConstant";
 
 // Utility function for calculating investment details
-  export const calculateInvestmentDetails = (InvestmentAmount: any) => {
-    const InterestExpense = InvestmentAmount * 1.029;                   // Interest on investments
-    const InvestmentPeriod = Math.floor((InterestExpense * 12) / 60);   // Investment period
-    const Produce = Number.isInteger(InvestmentPeriod) ? InvestmentPeriod - 10 : 0; // Production amount: if InvestmentPeriod is an integer before assigning the Produce value
-
+  export const calculateInvestmentDetails = (InvestmentAmount: number, InvestmentPeriod: number) => {
+    const InterestExpense = 3.75 
+    
+    const Produce = (InvestmentAmount * INTEREST_RATE * (InvestmentPeriod/12)) - InvestmentAmount
+    if (InvestmentPeriod < 12)
+      {const Produce = (InvestmentAmount * INTEREST_RATE * (InvestmentPeriod/12))}
     return {
       InterestExpense,
-      InvestmentPeriod,
       Produce,
     };
-  };
+};

@@ -41,16 +41,6 @@ const totalData = [
     ],
   },
   {
-    image: "/img/Traderepublic_Log.svg",
-    percentage: "3,40",
-    price: "340,00",
-    bullets: [
-      "Hohe Flexibilität ",
-      "Einfache Eröffnung",
-      "Stabiles Finanzinstitut"
-    ],
-  },
-  {
     image: "/img/finance.png",
     percentage: "3,30",
     price: "330,00 ",

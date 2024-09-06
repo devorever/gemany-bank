@@ -72,15 +72,6 @@
   align-items: stretch !important;
 }
 
-.filter-by-rate {
-  font-weight: bold;
-  border: none;
-  border-width: 0px;
-  background: transparent;
-  color: #1d242d;
-  cursor: pointer;
-}
-
 .amount-currency-input {
   border-radius: 10px 0px 0px 10px;
 }

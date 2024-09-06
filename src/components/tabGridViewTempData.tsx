@@ -15,7 +15,7 @@ const styles: { [key: string]: CSSProperties } = {
     fontSize: '14px',
     fontWeight: 'bold',
     fontFamily: "Montserrat, Arial, Helvetica, sans-serif",
-    backgroundColor: '#fff6f6',
+    backgroundColor: '#EEEEEE',
     color: '#707497',
   } as React.CSSProperties,
   subContent: {
@@ -30,7 +30,7 @@ const styles: { [key: string]: CSSProperties } = {
     fontWeight: 'bold',
     fontFamily: "Montserrat, Arial, Helvetica, sans-serif",
     backgroundColor: 'transparent',
-    color: '#010101',
+    color: '#1D1D1D',
   } as React.CSSProperties,
   partOne: {
     gridColumn: 'span 2', // Each item in partOne will span 2 columns
@@ -69,11 +69,11 @@ const tab1Grid: React.FC = () => {
       <div style={{ ...styles.item, ...styles.subTitle }}>ANBIETER</div>
       <div style={{ ...styles.item, ...styles.subTitle }}>&nbsp;</div>
       <div style={{ ...styles.item, ...styles.subTitle }}>KONTO</div>
-      <div style={{ ...styles.item, ...styles.detailContent }}>&nbsp;</div>
+      <div style={{ ...styles.item, ...styles.subTitle }}>&nbsp;</div>
       <div style={{ ...styles.item, ...styles.subContent }}>Bank</div>
       <div style={{ ...styles.item, ...styles.detailContent }}>Trade Republic</div>
       <div style={{ ...styles.item, ...styles.subContent }}>Laufzeit</div>
-      <div style={{ ...styles.item, ...styles.subTitle }}>-</div>
+      <div style={{ ...styles.item, ...styles.subContent }}>-</div>
       <div style={{ ...styles.item, ...styles.subContent }}>Produkt</div>
       <div style={{ ...styles.item, ...styles.detailContent }}>Zinskonto</div>
       <div style={{ ...styles.item, ...styles.subContent }}>Anlagebetrag</div>
@@ -89,7 +89,7 @@ const tab1Grid: React.FC = () => {
       <div style={{ ...styles.item, ...styles.subContent }}>Zinssatz p. a. </div>
       <div style={{ ...styles.item, ...styles.detailContent }}>3,75 %</div>
       <div style={{ ...styles.item, ...styles.subTitle }}>SICHERHEIT & STEUERN</div>
-      <div style={{ ...styles.item, ...styles.subContent }}>&nbsp;</div>
+      <div style={{ ...styles.item, ...styles.subTitle }}>&nbsp;</div>
       <div style={{ ...styles.item, ...styles.subContent }}>Zinszahlungen pro Jahr</div>
       <div style={{ ...styles.item, ...styles.detailContent }}>12</div>
       <div style={{ ...styles.item, ...styles.subContent }}>Einlagensicherung</div>

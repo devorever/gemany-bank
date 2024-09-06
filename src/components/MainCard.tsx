@@ -7,10 +7,11 @@ import { calculateInvestmentDetails } from '../components/InvestmentCalc';
 import CustomGrid, { tab1Grid as Tab1Grid, tab2Grid as Tab2Grid } from './tabGridViewTempData';
 import FilterSection from '@/components/FilterSection';
 import ThreeQuarterCircle from '@/components/RateCircle';
+import { CIRCLE_RATE_LEVEL_0 } from "@/components/DefineConstant";
 
 export const MainCard: React.FC = () => {
-  const [amountFilter, setAmountFilter] = useState<number | ''>(20);
-  const [periodFilter, setPeriodFilter] = useState<number | ''>('');
+  const [amountFilter, setAmountFilter] = useState<number | ''>(10);
+  const [periodFilter, setPeriodFilter] = useState<number | ''>('12');
   const [rateFilter, setRateFilter] = useState<number | ''>('');
   const [showMoreStates, setShowMoreStates] = useState<boolean[]>(new Array(totalData.length).fill(false));
   const [activeTabStates, setActiveTabStates] = useState<number[]>(new Array(totalData.length).fill(0));
@@ -50,7 +51,7 @@ export const MainCard: React.FC = () => {
   };
 
 // Initialize the circle rate view  random number, 35 same 0, in other words, standard is 35...
-const [predefinedRateValues, setPredefinedRateValues] = useState<number[]>([88, 72, 64, 55, 47, 35]);
+const [predefinedRateValues, setPredefinedRateValues] = useState<number[]>([1.1, 1.3, 1.6, 1.5, 2.2, 1.2]);
 
 useEffect(() => {
   if (rateFilter !== '') {
@@ -76,11 +77,14 @@ useEffect(() => {
       {/* Display filtered data */}
       <div className="flex flex-wrap justify-center gap-6">
         {totalData.map((item, index) => {
-          const { InterestExpense, InvestmentPeriod, Produce } = calculateInvestmentDetails(amountFilter === '' ? 0 : amountFilter);
-          const validProduce = Number.isInteger(Produce) ? Produce : 0;
+          const { InterestExpense, Produce } = calculateInvestmentDetails(
+            amountFilter === '' ? 0 : amountFilter,
+            periodFilter === '' ? 0 : periodFilter
+          );
+          const validProduce = Produce;
           
           {/* For Back-End Dev? */}
-          const shouldDisplay = periodFilter === '' || InvestmentPeriod <= periodFilter;
+          const shouldDisplay = periodFilter === '' || Produce !== '';
           const value = predefinedRateValues[index % predefinedRateValues.length];
 
           return (
@@ -105,7 +109,7 @@ useEffect(() => {
                   </div>
                   <div className="flex flex-col justify-center text-gray-500 items-center">
                     <p className="text-[22px] font-bold">
-                      {Math.floor(validProduce)}€
+                      {validProduce.toFixed(2)}€
                     </p>
                     <p className="text-[18px] font-normal">
                       Ertrag
