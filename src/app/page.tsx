@@ -13,7 +13,7 @@ export default function Home() {
       <SectionTitle />
 
       <Testimonials />
-      <SectionTitleSecond />
+      {/* <SectionTitleSecond /> */}
       <MainCard />
 
 {/* 

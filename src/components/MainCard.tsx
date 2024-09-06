@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from "@/components/Container";
 import Image from "next/image";
 import { totalData } from "@/components/mainData";
 import { calculateInvestmentDetails } from '../components/InvestmentCalc';
-import CustomGrid, { tab1Grid as Tab1Grid, tab2Grid as Tab2Grid } from '../components/tabGridView';
+import CustomGrid, { tab1Grid as Tab1Grid, tab2Grid as Tab2Grid } from './tabGridViewTempData';
 import FilterSection from '@/components/FilterSection';
+import ThreeQuarterCircle from '@/components/RateCircle';
 
 export const MainCard: React.FC = () => {
   const [amountFilter, setAmountFilter] = useState<number | ''>(20);
@@ -48,6 +49,19 @@ export const MainCard: React.FC = () => {
     });
   };
 
+// Initialize the circle rate view  random number, 35 same 0, in other words, standard is 35...
+const [predefinedRateValues, setPredefinedRateValues] = useState<number[]>([88, 72, 64, 55, 47, 35]);
+
+useEffect(() => {
+  if (rateFilter !== '') {
+    setPredefinedRateValues(prevValues => {
+      const newValues = [...prevValues];
+      [newValues[0], newValues[4]] = [newValues[4], newValues[0]];
+      return newValues;
+    });
+  }
+}, [rateFilter]);
+
   return (
     <Container>
       <FilterSection
@@ -67,10 +81,11 @@ export const MainCard: React.FC = () => {
           
           {/* For Back-End Dev? */}
           const shouldDisplay = periodFilter === '' || InvestmentPeriod <= periodFilter;
+          const value = predefinedRateValues[index % predefinedRateValues.length];
 
           return (
             shouldDisplay && (
-              <div key={index} className="flex flex-col w-full justify-center my-6 bg-white border-s-white rounded-[20px] shadow-[0_2px_12px_0_rgba(0,0,0,0.1)] lg:w-[1200px] w-full mx-10 lg:mx-0 gap-6">
+              <div key={index} className="flex flex-col w-full justify-center my-6 bg-white border-s-white rounded-[20px] shadow-[0_2px_12px_0_rgba(0,0,0,0.1)] lg:w-[1200px] mt-6 mx-10 lg:mx-0 gap-6">
                 <div className="flex justify-between items-center p-6">
                   <div>
                     <Image
@@ -108,15 +123,18 @@ export const MainCard: React.FC = () => {
                     </p>
                   </div>
 
+                  <div>              
+                    <ThreeQuarterCircle value={value} />                    
+                  </div>
         
-                  <button className="bg-[#004b8c] text-sm text-white rounded-lg h-14 px-4">
+                  <button className="bg-[#FFB100] text-sm text-white font-semibold rounded-lg h-14 px-4">
                     Zum Angebot<span className="ml-2">&gt;</span>
                   </button>
                 </div>
 
                 {/* Show More Button */}
                 <div className="flex justify-center p-4 border-t">
-                  <button onClick={() => handleShowMoreToggle(index)} className="flex items-center px-4 py-2 link-style-button">
+                  <button onClick={() => handleShowMoreToggle(index)} className="flex items-center px-4 py-2 show-more-button">
                     <span>{showMoreStates[index] ? "Weniger Info" : "Mehr Info"}</span>
                     <span className={`ml-2 transition-transform ${showMoreStates[index] ? 'rotate-180' : 'rotate-0'}`}>˅</span>
                   </button>
@@ -125,20 +143,24 @@ export const MainCard: React.FC = () => {
                 {/* Additional Content with Tabs */}
                 {showMoreStates[index] && (
                   <div className="p-4 border-t tab-content-view">
-                    <div className="flex justify-left space-x-4 mb-4">
-                      <button
+                    <ul className="flex justify-left space-x-4 mb-4">
+                      <li
                         onClick={() => handleTabChange(index, 0)}
-                        className={`link-style-blue ${activeTabStates[index] === 0 ? 'font-bold' : ''}`}
+                        className={`tab-detail-view cursor-pointer ${
+                          activeTabStates[index] === 0 ? 'border-b-4 border-blue-500 text-blue-500' : 'text-gray-500'
+                        }`}
                       >
                         Produktdetails
-                      </button>
-                      <button
+                      </li>
+                      <li
                         onClick={() => handleTabChange(index, 1)}
-                        className={`link-style-blue ${activeTabStates[index] === 1 ? 'font-bold' : ''}`}
+                        className={`tab-detail-view cursor-pointer ${
+                          activeTabStates[index] === 1 ? 'border-b-4 border-blue-500 text-blue-500' : 'text-gray-500'
+                        }`}
                       >
-                        Bewertung
-                      </button>
-                    </div>
+                        Produktdetails
+                      </li>
+                    </ul>
 
                     {/* Tab Content */}
                     <div>

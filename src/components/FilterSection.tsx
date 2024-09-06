@@ -21,7 +21,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   onRateChange
 }) => {
   return (
-    <div className = "flex justify-center mb-6">
+    <div className = "flex justify-center my-6">
       <div className = "bg-white border-s-white rounded-[20px] shadow-[0_2px_12px_0_rgba(0,0,0,0.1)] lg:w-[1200px] w-full px-6 py-4">
         <div className = "flex flex-wrap gap-6">
           {/* Anlagebetrag (Amount) */}
@@ -59,16 +59,16 @@ const FilterSection: React.FC<FilterSectionProps> = ({
           </div>
 
           {/* Sortieren nach (Sort By) */}
-          <div className = "flex flex-1 items-center justify-end">
-            <span className = "mr-2 filter-header">Sortieren nach:</span>
+          <div className="flex flex-1 items-center justify-end">
+            <span className="mr-2 filter-header">Sortieren nach:</span>
             <select
-              value = {rateFilter}
-              onChange = {onRateChange}
-              className = "filter-by-rate px-4 py-2 border rounded-lg"
-              style = {{ width: '100px' }}
+              value={rateFilter}
+              onChange={onRateChange}
+              className="filter-by-rate px-4 py-2 border rounded-lg"
+              style={{ width: '100px' }}
             >
-              <option value = "" className = "filter-by-rate">Zinssatz</option>
-              <option value = "" className = "filter-by-rate">Note</option>
+              <option value="">Zinssatz</option>
+              <option value="1">Note</option> {/* Adjust values as needed */}
             </select>
           </div>
         </div>

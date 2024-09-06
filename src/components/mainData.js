@@ -61,6 +61,29 @@ const totalData = [
     ],
   }
 ]
+
+const totalDataSection = [
+  {
+    image: "/img/Traderepublic_Log.svg",
+    percentage: "3,75",
+    price: "375,00",
+    bullets: [
+      "Zinssatz unbefristet",
+      "Monatliche Zinszahlung",
+      "Schnelle Kontoeröffnung per App"
+    ],
+  },
+  {
+    image: "/img/finance.png",
+    percentage: "3,30",
+    price: "330,00 ",
+    bullets: [
+      "Hohe Einlagensicherung",
+      "Anlagebetrag ohne Obergrenze",
+      "SAb 2.500 €"
+    ],
+  }
+]
 const tradeRepublic = {
   image: "/img/Traderepublic_Log.svg",
   percentage: "3,75",
@@ -126,4 +149,4 @@ const financeService = {
   ],
 };
 
-export {tradeRepublic, klarna, openBank, openBank1, credit, financeService, totalData};
+export { tradeRepublic, klarna, openBank, openBank1, credit, financeService, totalData, totalDataSection };

@@ -7,7 +7,18 @@
   body {
   }
 }
+@keyframes continuousScroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 
+.continuous-scroll {
+  animation: continuousScroll 20s linear infinite;
+}
 /* Custom styles */
 .main-header {
   position: fixed !important;
@@ -16,28 +27,19 @@
 }
 .site-logo { margin-left: 100px; }
 /* Show more button */
-.link-style-button {
+.show-more-button {
   border: none;
   background: transparent;
   color: #1d242d; /* Tailwind's blue-600 */
   cursor: pointer;
 }
 
-.link-style-button:hover {
+.show-more-button:hover {
   color: #1d242d; /* Tailwind's blue-800 */
   text-decoration: underline;
 }
 
-.link-style-blue {
-  border: none;
-  background: transparent;
-  color: #1d242d; /* Tailwind's blue-600 */
-  cursor: pointer;
-}
-.link-style-blue:hover {
-  color: #1d242d; /* Tailwind's blue-800 */
-  border-bottom: 5px solid #163BFB !important;
-}
+
 
 /* components/GridDisplay */
 .gridContainer {

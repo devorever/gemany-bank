@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
-const styles = {
+const styles: { [key: string]: CSSProperties } = {
   tabOneMainStyle: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',  

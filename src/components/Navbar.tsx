@@ -4,7 +4,6 @@ import Image from "next/image"
 import { Disclosure } from "@headlessui/react";
 import * as SVG from "../components/SVG"
 import { useState } from "react";
-
 export const Navbar = () => {
   const navigation = [
     "Save",
@@ -65,28 +64,28 @@ export const Navbar = () => {
     console.log('Not Hovered');
   };
   return (
-    <div className="main-header w-full">
-      <nav className="container relative flex flex-wrap items-center py-1 mx-auto lg:justify-between px-2 w-full">
+    <div className="w-full">
+      <nav className="container relative flex flex-wrap items-center py-8 mx-auto lg:justify-between px-2 w-full">
         {/* Logo  */}
         <Disclosure>
           {({ open }) => (
             <>
-              <div className="site-logo flex flex-wrap items-center justify-between w-full lg:w-auto">
+              <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
                 <Link href="/">
                   <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                     <span>
                       <Image
-                        src="https://www.weltsparen.de/app/themes/sg-core-theme/assets/lib/img/Logo_WeltSparen.svg"
+                        src="/img/Fin-new-logo.png.png"
                         alt="N"
-                        width="128"
-                        height="32"
-                        className="w-[128px]"
+                        width="200"
+                        height="72"
+                        className="w-[200px]"
                       />
                     </span>
                   </span>
                 </Link>
 
-                <Disclosure.Button
+                {/* <Disclosure.Button
                   aria-label="Toggle Menu"
                   className="px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700">
                   <svg
@@ -117,14 +116,14 @@ export const Navbar = () => {
                       </p>
                     ))}
                   </>
-                </Disclosure.Panel>
+                </Disclosure.Panel> */}
               </div>
             </>
           )}
         </Disclosure>
 
         {/* menu  */}
-        <div className="hidden text-center lg:flex lg:items-center">
+        {/* <div className="hidden text-center lg:flex lg:items-center">
           <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
             {navigation.map((menu, index) => (
               <li className="mr-3 nav__item" key={index}>
@@ -138,7 +137,7 @@ export const Navbar = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
         {isHovered && (<div className="hidden lg:flex absolute top-10 right-0 p-4 border shadow-orange-50 bg-white" onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}>
           <div className="border-r-2 border-gray-300 mx-4">
