@@ -1,14 +1,10 @@
-import { INTEREST_RATE } from "@/components/DefineConstant";
+import React, { useState } from 'react';
 
 // Utility function for calculating investment details
-  export const calculateInvestmentDetails = (InvestmentAmount: number, InvestmentPeriod: number) => {
-    const InterestExpense = 3.75 
-    
-    const Produce = (InvestmentAmount * INTEREST_RATE * (InvestmentPeriod/12)) - InvestmentAmount
-    if (InvestmentPeriod < 12)
-      {const Produce = (InvestmentAmount * INTEREST_RATE * (InvestmentPeriod/12))}
+  export const calculateInvestmentDetails = (InvestmentAmount: number, InterestExpense: number, InvestmentPeriod: number) => {
+    const InterestRate = 1 + (InterestExpense/100)
+    const Produce = (InvestmentAmount * InterestRate * (InvestmentPeriod/12)) - InvestmentAmount
     return {
-      InterestExpense,
       Produce,
     };
 };

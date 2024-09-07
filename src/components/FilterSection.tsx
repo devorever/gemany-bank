@@ -51,10 +51,10 @@ const FilterSection: React.FC<FilterSectionProps> = ({
               className = "px-4 py-2 border rounded-lg filter-value-input"
               style = {{ width: '100%' }}
             >
-              <option value = "1">1 Monate</option>
-              <option value = "3">3 Monate</option>
-              <option value = "6">6 Monate</option>
-              <option value = "9">9 Monate</option>            
+              <option value = "1" disabled>1 Monate</option>
+              <option value = "3" disabled>3 Monate</option>
+              <option value = "6" disabled>6 Monate</option>
+              <option value = "9" disabled>9 Monate</option>            
               <option value = "12">12 Monate</option>
               <option value = "18">18 Monate</option>
               <option value = "24">24 Monate</option>
