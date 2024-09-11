@@ -9,6 +9,10 @@ import ThreeQuarterCircle from '@/components/RateCircle';
 import { Tab1Grid, Tab2Grid } from "@/components/BankDetailTemplate";
 import { BankDetail, BankRating } from "@/components/BankDetailDataList";
 import Checkmark from "@/components/SVG/CheckMark";
+import PlusIcon from "@/components/SVG/PlusMark";
+import InfoIcon from "@/components/SVG/ExclamMark";
+import CheckmarkIcon from "@/components/SVG/GreenExclamMark";
+import CircleIcon from "@/components/SVG/CircleMark";
 import * as SVG from "../components/SVG"
 
 export const MainCard: React.FC = () => {
@@ -100,7 +104,7 @@ export const MainCard: React.FC = () => {
             const inerestExpense = preInterestExpense[index % preInterestExpense.length];
             const {Produce}  = calculateInvestmentDetails(
             amountFilter === '' ? 0 : amountFilter,
-            inerestExpense === '' ? 0 : inerestExpense,
+            inerestExpense,
             periodFilter === '' ? 0 : periodFilter
           );
 
@@ -172,7 +176,7 @@ export const MainCard: React.FC = () => {
 
                 {/* Additional Content with Tabs */}
                 {showMoreStates[index] && (
-                  <div className="p-4 border-t tab-content-view">
+                  <div className={`p-4 border-t tab-content-view ${showMoreStates[index] ? 'expanded' : ''}`}>
                     <ul className="flex justify-left space-x-4 mb-4">
                       <li
                         onClick={() => handleTabChange(index, 0)}
@@ -194,14 +198,196 @@ export const MainCard: React.FC = () => {
                     <div>
                       {activeTabStates[index] === 0 && (
                         <div>
-                          <BankDetail />
+                          {Array.isArray(item.bankdetails) && item.bankdetails.map((bankdetail, idx) => (
+                             <div key={index}>
+                                <div className="flex flex-wrap justify-between tab-detail-table">
+                                  <div className="first-column w-full md:w-1/2 p-4">
+                                    <table className="table-auto w-full detail-table-0">
+                                      <thead>
+                                        <tr className="tab-sub-tile">
+                                          <th className="text-left p-2">Anbieter</th>
+                                          <th className="p-2"></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td className="p-2">Bank</td>
+                                          <td className="text-right p-2">{bankdetail.bankName}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="p-2">Produkt</td>
+                                          <td className="text-right p-2" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                                            <span style={{ marginRight: '8px' }}>{bankdetail.ProductName}</span>
+                                            <InfoIcon size={20} fillColor="#003366" circleColor="#E0E0E0" />
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+
+                                    <table className="table-auto w-full detail-table-1 mt-4">
+                                      <thead>
+                                        <tr className="tab-sub-tile">
+                                          <th className="text-left p-2">Konditionen</th>
+                                          <th className="p-2"></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td className="p-2">Kontoführungsgebühr</td>
+                                          <td className="text-right p-2">{bankdetail.accountManagementFee}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="text-left p-2" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'left' }}>
+                                            <span style={{ marginRight: '8px' }}>Zinssatz p. a.</span>
+                                            <InfoIcon size={20} fillColor="#003366" circleColor="#E0E0E0" />
+                                          </td>
+                                          <td className="text-right p-2">
+                                            <span className="text-right calculated interest">{bankdetail.interestRate}</span> %
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td className="p-2">Zinszahlungen pro Jahr</td>
+                                          <td className="text-right p-2">{bankdetail.interestPaymentsYear}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="text-left p-2" style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'left' }}>
+                                            <span style={{ marginRight: '8px' }}>Zinsausschüttung</span>
+                                            <InfoIcon size={20} fillColor="#003366" circleColor="#E0E0E0" />
+                                          </td>
+                                          <td className="text-right p-2">{bankdetail.interestDistribution}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="p-2">Prämie</td>
+                                          <td className="text-right p-2">{bankdetail.premiumAmonunt}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  <div className="second-column w-full md:w-1/2 p-4">
+                                    <table className="table-auto w-full detail-table-0">
+                                      <thead>
+                                        <tr className="tab-sub-tile">
+                                          <th className="text-left p-2">Konto</th>
+                                          <th className="p-2"></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td className="p-2">Laufzeit</td>
+                                          <td className="text-right p-2">{bankdetail.durationNum}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="p-2">Anlagebetrag</td>
+                                          <td className="text-right p-2">{bankdetail.investmentAmount}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="p-2">Koppelprodukt</td>
+                                          <td className="text-right p-2">{bankdetail.coupledProduct}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="p-2">Vertragsende</td>
+                                          <td className="text-right p-2">{bankdetail.endContract}</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+
+                                    <table className="table-auto w-full detail-table-1 mt-4">
+                                      <thead>
+                                        <tr className="tab-sub-tile">
+                                          <th className="text-left p-2">Sicherheit & Steuern</th>
+                                          <th className="p-2"></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td className="text-left p-2">Einlagensicherung</td>
+                                          <td className="text-right p-2">{bankdetail.depositProtection}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="text-left p-2">Bonität des Landes</td>
+                                          <td className="text-right p-2">{bankdetail.countryCreditRating}</td>
+                                        </tr>
+                                        <tr>
+                                          <td className="text-left p-2">Freistellungsauftrag</td>
+                                          <td className="text-right p-2">
+                                            {bankdetail.exemptionOrder ? (
+                                              <CheckmarkIcon size={20} circleColor="#4CAF50" checkColor="#FFFFFF" />
+                                            ) : (
+                                              <span>&nbsp;</span>
+                                            )}
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                          </div>
+                          ))}
                         </div>
                       )}
-                      {activeTabStates[index] === 1 && (
-                        <div>
-                          <BankRating />
+
+                      {activeTabStates[index] === 1 && Array.isArray(item.bankratings) && item.bankratings.map((bankrating, idx) => (
+                        <div key={idx}>
+                          <div className="flex flex-wrap justify-between tab-detail-table">
+                            <div className="first-column w-full md:w-1/2 p-4">
+                              <table className="table-auto w-full detail-table-0">
+                                <thead>
+                                  <tr className="tab-sub-tile">
+                                    <th className="text-left p-2">KATEGORIEN</th>
+                                    <th className="p-2"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td className="p-2" style={{ display: 'flex', alignItems: 'center' }}>
+                                      <PlusIcon size={20} color="#4CAF50" strokeColor="#FFFFFF" />
+                                      <span style={{ margin: '0px 0px 1px 3px' }}>Konditionen</span>
+                                    </td>
+                                    <td className="text-right p-2">{bankrating.conditions}</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2" style={{ display: 'flex', alignItems: 'center' }}>
+                                      <CircleIcon size={20} outerColor="#FFA500" innerColor="#FFFFFF" />
+                                      <span style={{ margin: '0px 0px 1px 3px' }}>Einlagensicherung</span>
+                                    </td>
+                                    <td className="text-right p-2">{bankrating.depositProtection}</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2" style={{ display: 'flex', alignItems: 'center' }}>
+                                      <PlusIcon size={20} color="#4CAF50" strokeColor="#FFFFFF" />
+                                      <span style={{ margin: '0px 0px 1px 3px' }}>Steuern</span>
+                                    </td>
+                                    <td className="text-right p-2">{bankrating.taxes}</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2" style={{ display: 'flex', alignItems: 'center' }}>
+                                      <PlusIcon size={20} color="#4CAF50" strokeColor="#FFFFFF" />
+                                      <span style={{ margin: '0px 0px 1px 3px' }}>Eröffnung</span>
+                                    </td>
+                                    <td className="text-right p-2">{bankrating.opening}</td>
+                                  </tr>
+                                  <tr>
+                                    <td className="p-2">Gesamt</td>
+                                    <td className="text-right p-2">{bankrating.total}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+
+                            <div className="second-column w-full md:w-1/2 p-4">
+                              <table className="table-auto w-full detail-table-0">
+                                <tbody>
+                                  <tr className="lvl-description text-left">
+                                    <td className="text-left p-2">{bankrating.description}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
                         </div>
-                      )}
+                      ))}
+
                     </div>
                   </div>
                 )}

@@ -6,6 +6,7 @@ import CircleIcon from "@/components/SVG/CircleMark";
 
 // Define types for the props (optional but recommended)
 type BankData = {
+  bankId: string;
   bankName: string;
   ProductName: string;
   accountManagementFee: string;
@@ -27,11 +28,11 @@ interface Tab1GridProps {
 }
 
 interface Tab2GridProps {
-  conditions: number;
-  depositProtection: number;
-  taxes: number;
-  opening: number;
-  total: number;
+  conditions: string;
+  depositProtection: string;
+  taxes: string;
+  opening: string;
+  total: string;
   description: string;
 }
 
@@ -40,9 +41,9 @@ interface Tab2GridProps {
 const Tab1Grid: React.FC<Tab1GridProps> = ({ banks }) => {
   return (
     <div>
-      {banks.map((bank, index) => (
+      {Array.isArray(banks) && banks.map((bank, index) => (
         <div key={index}>
-              <div className="flex flex-wrap justify-between tab-detail-table">
+          <div className="flex flex-wrap justify-between tab-detail-table">
       <div className="first-column w-full md:w-1/2 p-4">
         <table className="table-auto w-full detail-table-0">
           <thead>
@@ -169,21 +170,6 @@ const Tab1Grid: React.FC<Tab1GridProps> = ({ banks }) => {
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const Tab2Grid: React.FC<Tab2GridProps> = ({ 
   conditions,

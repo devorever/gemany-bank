@@ -33,7 +33,7 @@ const ThreeQuarterCircle: React.FC<ThreeQuarterCircleProps> = ({ value }) => {
     }
   }, [value]);
 
-  const strokeDashoffset = threeQuarterCircumference - (rateProgressed / 100) * threeQuarterCircumference;
+  const strokeDashoffset = threeQuarterCircumference - (rateProgressed / 100) * circumference;
 
   return (
     <svg width="120" height="150" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
